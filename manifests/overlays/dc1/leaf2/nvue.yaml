@@ -27,7 +27,6 @@
         ip:
           address:
             192.0.2.2/32: {}
-            198.51.100.2/32: {}
         type: loopback
       swp1:
         ip:
