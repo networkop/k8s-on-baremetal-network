@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: switch
+spec:
+  selector:
+    matchLabels:
+      base: switch
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        base: switch
+    spec:
+      hostNetwork: true # this is needed for ifupdown restart
+      hostPID: true # this is needed to restart FRR based on its PID
+      containers:
+      - name: k8soncl
+        image: networkop/k8sonbm
+        imagePullPolicy: Always
+        securityContext:
+          capabilities:
+            add:
+            - NET_ADMIN
+            - SYS_MODULE
+          privileged: true
+      tolerations:
+      - key: "baremetal"
+        operator: Equal
+        value: "network"
+        effect: NoExecute

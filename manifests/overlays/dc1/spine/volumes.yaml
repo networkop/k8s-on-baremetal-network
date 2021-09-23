@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: switch
+spec:
+  template:
+    spec:
+      containers:
+      - name: k8soncl
+        volumeMounts:
+        - mountPath: /etc/sonic
+          name: etc-sonic
+        - mountPath: /tmp/sonic
+          name: sonic-config
+      volumes:
+      - configMap:
+          name: sonic
+        name: sonic-config
+      - hostPath:
+          path: /etc/sonic
+          type: Directory
+        name: etc-sonic

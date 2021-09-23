@@ -1,0 +1,29 @@
+---
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: switch
+spec:
+  template:
+    spec:
+      containers:
+      - name: k8soncl
+        volumeMounts:
+        - mountPath: /var/run/nvue/
+          name: nvue-socket
+        - mountPath: /etc/nvue.d/
+          name: nvue-etc
+        - mountPath: /tmp/nvue
+          name: nvue-config
+      volumes:
+      - configMap:
+          name: nvue
+        name: nvue-config
+      - hostPath:
+          path: /var/run/nvue
+          type: Directory
+        name: nvue-socket
+      - hostPath:
+          path: /etc/nvue.d/
+          type: Directory
+        name: nvue-etc

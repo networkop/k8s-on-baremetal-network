@@ -1,0 +1,23 @@
+---
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: switch
+spec:
+  selector:
+    matchLabels:
+      node: leaf1
+  template:
+    metadata:
+      labels:
+        node: leaf1
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/hostname
+                operator: In
+                values:
+                - leaf1

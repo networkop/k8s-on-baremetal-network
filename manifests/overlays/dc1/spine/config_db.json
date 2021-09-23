@@ -1,0 +1,65 @@
+{
+  "DEVICE_METADATA": {
+      "localhost": {
+          "hwsku": "Mellanox-SN2700",
+          "platform": "x86_64-kvm_x86_64-r0",
+          "mac": "52:54:00:12:34:56",
+          "hostname": "sonic",
+          "type": "LeafRouter",
+          "bgp_asn": "65100"
+      }
+  },
+  "PORT": {
+      "Ethernet0": {
+          "lanes": "0,1,2,3",
+          "alias": "fortyGigE0/0",
+          "index": "0",
+          "speed": "40000",
+          "admin_status": "up",
+          "mtu": "9100"
+      },
+      "Ethernet4": {
+          "lanes": "4,5,6,7",
+          "alias": "fortyGigE0/4",
+          "index": "1",
+          "speed": "40000",
+          "admin_status": "up",
+          "mtu": "9100"
+      }
+  },
+  "LOOPBACK_INTERFACE": {
+      "Loopback0|192.0.2.100/32": {}
+  },
+  "BGP_NEIGHBOR": {
+      "10.0.0.1": {
+          "rrclient": 0,
+          "name": "leaf1",
+          "local_addr": "10.0.0.0",
+          "nhopself": 0,
+          "holdtime": "180",
+          "asn": "65001",
+          "keepalive": "60"
+      },
+      "10.0.0.3": {
+          "rrclient": 0,
+          "name": "leaf2",
+          "local_addr": "10.0.0.0",
+          "nhopself": 0,
+          "holdtime": "180",
+          "asn": "65002",
+          "keepalive": "60"
+      }
+  },
+  "DEVICE_NEIGHBOR": {},
+  "INTERFACE": {
+      "Ethernet0|10.0.0.0/31": {},
+      "Ethernet4|10.0.0.2/31": {}
+  },
+  "KDUMP": {
+      "config": {
+          "enabled": "false",
+          "num_dumps": "3",
+          "memory": "0M-2G:256M,2G-4G:320M,4G-8G:384M,8G-:448M"
+      }
+  }
+}

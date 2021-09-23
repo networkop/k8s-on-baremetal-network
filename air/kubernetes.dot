@@ -1,0 +1,8 @@
+graph "Kubernetes on Baremetal Network" {
+  "leaf1" [ memory="2048" os="cumulus-vx-4.4.0" cpus="1"]
+  "leaf2" [ memory="2048" os="cumulus-vx-4.4.0" cpus="1"]
+  "spine" [ memory="2048" os="sonic-202012-f6f4c7f4" cpus="1"]
+  "netq-ts" [ os="netq-ts-cloud-4.0.0" ]
+    "spine":"eth1" -- "leaf1":"swp1"
+    "spine":"eth2" -- "leaf2":"swp1"
+}

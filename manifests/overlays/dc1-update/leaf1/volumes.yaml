@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1 
+kind: Deployment
+metadata:
+  name: switch
+spec:
+  template:
+    spec:
+      containers:
+      - name: k8soncl
+        volumeMounts:
+        - mountPath: /etc/network
+          name: etc-network
+        - mountPath: /etc/frr
+          name: etc-frr
+        - mountPath: /run/frr
+          name: run-frr
+        - mountPath: /tmp/intfs
+          name: interface-config
+        - mountPath: /tmp/frr
+          name: frr-config
+      volumes:
+      - configMap:
+          name: interfaces
+        name: interface-config
+      - configMap:
+          name: frr
+        name: frr-config
+      - hostPath:
+          path: /etc/network
+          type: Directory
+        name: etc-network
+      - hostPath:
+          path: /etc/frr
+          type: Directory
+        name: etc-frr
+      - hostPath:
+          path: /run/frr
+          type: Directory
+        name: run-frr
